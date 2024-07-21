@@ -1,0 +1,77 @@
+---
+import Info from '../components/Info.astro';
+import Sandbox from '../components/Sandbox.astro';
+
+---
+
+<div class="InnerLayout">
+	<div class="left">
+		<Info/>
+	</div>
+	<div class="right">
+		<Sandbox/>
+	</div>
+</div>
+
+<style lang="scss">
+
+	.InnerLayout{
+		display: flex;
+		width: 100%;
+		height: calc(100vh - 50px);
+		border: solid var(--border-width) var(--border-color);
+
+		/*LEFT SECTION*/
+		.left{
+			width: 100%;
+			max-width:500px;
+			height: 100%;
+			border-right: solid var(--border-width) var(--border-color);
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
+			
+		}
+
+		/*RIGHT SECTION*/
+		.right{
+			width: 100%;
+			max-width:calc(100% - 500px);
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding:var(--padding-1);
+		}
+	}
+
+	@media (max-width: 1100px) {	
+		.InnerLayout{
+			flex-direction: column-reverse;
+			height: calc(150vh);
+			/*LEFT SECTION*/
+			.left{
+				width: 100%;
+				max-width: 100%;
+				height: 25%;
+				border-right: none;
+				border-top: solid var(--border-width) var(--border-color);
+				display: flex;
+				justify-content: center;
+				align-items: flex-start;
+			}
+
+			/*RIGHT SECTION*/
+			.right{
+				width: 100%;
+				max-width: 100%;
+				height: 75%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding:var(--padding-1);
+			}
+		}
+	 	 
+	}
+</style>
