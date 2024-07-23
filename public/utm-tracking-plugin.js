@@ -250,21 +250,32 @@
 
     /* ===== Fill form fields with UTM data ===== */
     function UtmFormFill(utm_campaign, utm_content, utm_medium, utm_source, utm_term, utm_state) {
-        //DOM element vars
-        let inputUtmSource = document.querySelector('input[name="utm_source"]');
-		let inputUtmMedium = document.querySelector('input[name="utm_medium"]');
-		let inputUtmCampaign = document.querySelector('input[name="utm_campaign"]');
-		let inputUtmTerm = document.querySelector('input[name="utm_term"]');
-		let inputUtmContent = document.querySelector('input[name="utm_content"]');
-		let inputUtmState = document.querySelector('input[name="utm_state"]');
+        
+        //forEach loop to target ALL forms on a page
+        let elements = document.querySelectorAll('form');
+        elements.forEach(element => {
+            //do the thing
+            element.classList.add("active");
+            //element.classList.remove("active");
 
-        //set form field values to parameter variables
-        inputUtmSource.value = utm_source;
-        inputUtmMedium.value = utm_medium;
-        inputUtmCampaign.value = utm_campaign;
-        inputUtmTerm.value = utm_term;
-        inputUtmContent.value = utm_content;
-        inputUtmState.value = utm_state;
+            //DOM element vars
+            let inputUtmSource = element.querySelector('input[name="utm_source"]');
+            let inputUtmMedium = element.querySelector('input[name="utm_medium"]');
+            let inputUtmCampaign = element.querySelector('input[name="utm_campaign"]');
+            let inputUtmTerm = element.querySelector('input[name="utm_term"]');
+            let inputUtmContent = element.querySelector('input[name="utm_content"]');
+            let inputUtmState = element.querySelector('input[name="utm_state"]');
+
+            //set form field values to parameter variables
+            inputUtmSource.value = utm_source;
+            inputUtmMedium.value = utm_medium;
+            inputUtmCampaign.value = utm_campaign;
+            inputUtmTerm.value = utm_term;
+            inputUtmContent.value = utm_content;
+            inputUtmState.value = utm_state;
+        });
+        
+        
 
         return false;
     };
@@ -295,7 +306,7 @@
 /* ===== Auto-Run Functions | always run in the background ===== */
 /* ===== ================================================= ===== */
     /* ===== Add UTMs to Forms ===== */
-        //Run after DOM content load + delay for 3rd party form load-in 
+        //Run after DOM content load + delay for possible 3rd party form load-in 
         let pageLoadDelay = 1500; //in ms
         document.addEventListener("DOMContentLoaded", function(e){
             setTimeout(() => {
