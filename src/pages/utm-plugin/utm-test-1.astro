@@ -1,0 +1,53 @@
+---
+import Layout from '@layouts/Layout.astro';
+import InnerLayout from '@components/InnerLayout.astro';
+import PluginCards from '@components/contentComponents/PluginCards.astro';
+import CodeBlock from '@components/CodeBlock.astro';
+---
+
+<Layout 
+	title="Plugins"
+	heading="Advanced UTM Plugin | Web Marketing Plugin Suite"
+>
+	
+	<section>
+		<h2>Quick Start</h2>
+		<h3>What It Does</h3>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet venenatis urna cursus eget nunc scelerisque viverra mauris. Ultricies tristique nulla aliquet enim tortor at auctor urna. Duis ultricies lacus sed turpis tincidunt. Eu non diam phasellus vestibulum lorem sed risus ultricies.
+		</p>
+		<h3>How To Use It</h3>
+		<p>
+			This plugin is meant to run with minimal setup.
+		</p>
+
+		<h4>Set Up</h4>
+		<p>
+			Copy and paste the script tag into your site's code, and UTMs will start being automatically saved.
+		</p>
+		
+		<CodeBlock codeLang="html">
+
+		</CodeBlock>
+
+		<h4>Forms</h4>
+		<p>
+			Then add the below fields to your site's forms, and any time a user has UTMs present, these fields will be auto-filled. All forms with these fields will then include the user's UTM values with each form submission, allowing you to directly 
+		</p>
+
+		<CodeBlock codeLang="html">&lt;input type="hidden" name="utm_source" /&gt;
+&lt;input type="hidden" name="utm_medium" /&gt;
+&lt;input type="hidden" name="utm_campaign" /&gt;
+&lt;input type="hidden" name="utm_term" /&gt;
+&lt;input type="hidden" name="utm_content" /&gt;
+&lt;input type="hidden" name="utm_state" /&gt;
+		</CodeBlock>
+	</section>
+	
+</Layout>
+
+<style>
+	
+	
+
+</style>

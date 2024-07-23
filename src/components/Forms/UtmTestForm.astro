@@ -1,0 +1,103 @@
+---
+interface Props {
+	title: string;
+	subtitle: string;
+	body: string;
+	href: string;
+	alt: string;
+}
+
+const { title, subtitle, body, href, alt } = Astro.props;
+---
+
+<div class="UtmTestForm">
+	<div class="codeLang">UTM Testing Form</div>
+	{alt ? 
+		<form action="/submit_form" method="post">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" required>
+			</div>
+		
+			<div class="form-group">
+				<label for="comments">Comments:</label>
+				<textarea id="comments" name="comments" rows="4"></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="comments">utm_source:</label>
+				<input type="text" name="utm_source" placeholder="utm_source" />
+				<label for="comments">utm_medium:</label>
+				<input type="text" name="utm_medium" placeholder="utm_medium" />
+				<label for="comments">utm_campaign:</label>
+				<input type="text" name="utm_campaign" placeholder="utm_campaign" />
+				<label for="comments">utm_term:</label>
+				<input type="text" name="utm_term" placeholder="utm_term" />
+				<label for="comments">utm_content:</label>
+				<input type="text" name="utm_content" placeholder="utm_content" />
+				<label for="comments">utm_state:</label>
+				<input type="text" name="utm_state" placeholder="utm_state" />
+			</div>
+
+			<div class="form-group">
+				<input type="submit" value="Submit">
+			</div>
+		</form>
+	:
+		<form action="/submit_form" method="post">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" required>
+			</div>
+		
+			<div class="form-group">
+				<label for="comments">Comments:</label>
+				<textarea id="comments" name="comments" rows="4"></textarea>
+			</div>
+		
+			<input type="hidden" name="utm_source" />
+			<input type="hidden" name="utm_medium" />
+			<input type="hidden" name="utm_campaign" />
+			<input type="hidden" name="utm_term" />
+			<input type="hidden" name="utm_content" />
+			<input type="hidden" name="utm_state" />
+			
+			<div class="form-group">
+				<input type="submit" value="Submit">
+			</div>
+		</form>
+	}
+	
+
+	
+</div>
+
+<style lang="scss">
+	.UtmTestForm{
+		
+		border: var(--border-settings-main);
+		width: 100%;
+		max-width: var(--element-width-1);
+		margin: auto;
+		margin-bottom: 4rem;
+		box-shadow: var(--shadow-1);
+		.codeLang{
+			border-bottom: var(--border-settings-main);
+			padding-left: 1rem;
+			padding-top: 0.25rem;
+			padding-bottom: 0.25rem;
+			background-color: var(--black);
+			color: var(--white);
+		}
+		form{
+			display: flex;
+			flex-direction: column;
+			padding: 1rem;
+			.form-group{
+				display: flex;
+				flex-direction: column;
+				margin-bottom: 1rem;
+			}
+		}
+	}
+</style>

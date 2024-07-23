@@ -1,0 +1,34 @@
+---
+interface Props {
+	type: string;
+}
+
+const { type } = Astro.props;
+---
+
+<div class="DisplayBits" data-type={type && "corners"}>
+		<div class="corner upperLeft"></div>
+		<div class="corner lowerLeft"></div>
+
+		<div class="corner upperRight"></div>
+		<div class="corner lowerRight"></div>
+</div>
+
+<style lang="scss">
+	
+	.DisplayBits{
+		.corner{
+			border: solid 5px var(--black);
+			width: 1.5rem;
+			height: 1.5rem;
+			&.upperLeft{
+				border-bottom: none;
+				border-right: none;
+			}
+			&.lowerLeft{
+				border-top: none;
+				border-right: none;
+			}
+		}
+	}
+</style>

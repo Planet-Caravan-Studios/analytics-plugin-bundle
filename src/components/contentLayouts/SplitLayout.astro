@@ -1,0 +1,62 @@
+---
+interface Props {
+	title: string;
+	subtitle: string;
+	body: string;
+	href: string;
+}
+
+const { title, subtitle, body, href } = Astro.props;
+---
+
+<div class="SplitLayout">
+
+	<div class="leftSlot inverted">
+		<div class="inner">
+			<slot name="left-slot">
+				<h2>Header Text</h2>
+				<p>Body Text</p>
+			</slot>
+		</div>
+		
+	</div>
+
+	<div class="rightSlot">
+		<div class="inner">
+			<slot name="right-slot">
+				[Default content]
+			</slot>
+		</div>
+	</div>
+
+
+	
+		
+</div>
+
+<style lang="scss">
+	.SplitLayout{
+		display: flex;
+		border-top: var(--border-settings-main);
+		border-bottom: var(--border-settings-main);
+		.leftSlot, .rightSlot{
+			width: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			.inner{
+				width: 100%;
+				max-width: 500px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				padding: var(--padding-1);
+			}
+		}
+		.inverted{
+			background: var(--black);
+			color: var(--white);
+		}
+	}
+</style>

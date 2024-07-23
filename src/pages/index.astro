@@ -1,22 +1,56 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import InnerLayout from '../components/InnerLayout.astro';
+/*========================================*/
+/*	PAGE: Home/Index
+		NOTES:	
+*/
+/*========================================*/
+
+//Essential Components
+	import Layout from '@layouts/Layout.astro';
+
+//Content Components
+	//import MasterComponent from '@components/MasterComponent.astro';
+	import PluginCards from '@components/contentComponents/PluginCards.astro';
+	import SplitLayout from '@components/contentLayouts/SplitLayout.astro';
+	import SampleForm from '@components/Forms/SampleForm.astro';
+	import DisplayBits from '@components/DisplayBits.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		
-		<InnerLayout/>
-		
-	</main>
+<Layout 
+	title="Plugins"
+	heading="Working Source Files"
+>
+	
+	<section>
+		<h2 class="text-size-3">Web Marketing Plugin Suite</h2>
+		<p class="text-size-2">
+			This code repo is for the working source files for the following plugins:			
+		</p>
+		<ul class="text-size-2">
+			<li>Custom Analytics Events</li>
+			<li>Advanced UTM Tracking</li>
+			<li>Dynamic Content Control</li>
+		</ul>
+	</section>
+	
+	<section>
+		<PluginCards/>	
+	</section>
+
+	<section class="noPadding">
+		<SplitLayout>
+			<Fragment slot="left-slot"> 
+				<h2>GDPR Compliance</h2>
+				<p>YES: These plugins are fully GDPR compliant.</p>
+			</Fragment>
+			<Fragment slot="right-slot"> 
+				<p>
+					These plugins do not collect any personal information such as email, name, or IP address. This means they are fully GDPR compliant and do not need to be restricted by a cookie banner.
+				</p>
+			</Fragment>
+		</SplitLayout>
+	</section>
+	
 </Layout>
 
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;		
-		font-size: 14px;
-		line-height: 1.6;
-	}
 
-</style>

@@ -1,0 +1,20 @@
+---
+interface Props {
+	title: string;
+	subtitle: string;
+	body: string;
+	href: string;
+}
+
+const { title, subtitle, body, href } = Astro.props;
+---
+<span class="linebreak">
+	<br/>
+</span>
+
+
+<style lang="scss">
+	.linebreak{
+		display: block;
+	}
+</style>

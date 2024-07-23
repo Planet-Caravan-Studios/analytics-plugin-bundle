@@ -1,0 +1,109 @@
+---
+interface Props {
+	title: string;
+	body: string;
+	href: string;
+}
+
+const { href, title, body } = Astro.props;
+---
+
+<div class="flexContainer">
+		
+		<div class="pluginCard">
+			<h2>Advanced UTM Tracking</h2>
+			
+			<div class="demoLink">
+				<a href="/utm-plugin">[Demo and Instructions]</a>
+			</div>
+			
+			<ul class="linkGroup">
+				<li>Github Link: <a href="#">[coming_soon]</a></li>
+				<li>NPM Link: <a href="#">[coming_soon]</a></li>
+				<li>CDN Link: <a href="#">[coming_soon]</a></li>
+			</ul>
+		</div>
+
+		<div class="pluginCard">
+			<h2>Custom Analytics Events</h2>
+
+			<div class="demoLink">
+				<a href="#">[Demo and Instructions]</a>
+			</div>
+
+			<ul class="linkGroup">
+				<li>Github Link: <a href="#">[coming_soon]</a></li>
+				<li>NPM Link: <a href="#">[coming_soon]</a></li>
+				<li>CDN Link: <a href="#">[coming_soon]</a></li>
+			</ul>
+		</div>
+
+		<div class="pluginCard">
+			<h2>Dynamic Content Control</h2>
+			
+			<div class="demoLink">
+				<a href="#">[Demo and Instructions]</a>
+			</div>
+			
+			<ul class="linkGroup">
+				<li>Github Link: <a href="#">[coming_soon]</a></li>
+				<li>NPM Link: <a href="#">[coming_soon]</a></li>
+				<li>CDN Link: <a href="#">[coming_soon]</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+
+
+<style lang="scss">
+	.flexContainer{
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		flex-direction: row;
+		margin: -1rem;
+	}
+	.pluginCard{
+		width: 100%;
+		max-width:400px;
+		border: var(--border-settings-main);
+		box-shadow: var(--shadow-1);
+		padding: 1rem;
+		margin: 1rem;
+		h2{
+			margin: 0;
+			padding-bottom: 0.5rem;
+			border-bottom: var(--border-settings-main);
+		}
+		.tagline{
+			margin-top: 0.5rem;
+			font-weight: 800;
+		}
+		.demoLink{
+			text-align: center;
+			padding: 1rem 0;
+			a{
+				background-color: var(--black);
+				color: var(--white);
+				padding: 0.5em 1em;
+				text-decoration: none;
+				&:hover{
+					text-decoration: underline;
+					text-decoration-style: dotted;
+				}
+			}
+		}
+		.linkGroup{
+			border-top: var(--border-settings-main);
+			padding-top: 1rem;
+			a{
+				text-decoration: none;
+				&:hover{
+					text-decoration: underline;
+					text-decoration-style: dotted;
+				}
+			}
+		}
+	}
+</style>

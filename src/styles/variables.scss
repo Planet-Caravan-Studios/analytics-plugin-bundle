@@ -1,0 +1,51 @@
+:root {
+	/*--accent: 136, 58, 234;
+	--accent-light: 224, 204, 250;
+	--accent-dark: 49, 10, 101;
+	--accent-gradient: linear-gradient(
+		45deg,
+		rgb(var(--accent)),
+		rgb(var(--accent-light)) 30%,
+		white 60%
+	);*/
+	//color pallete
+		--black: #28282B;
+		--white: #FAF9F6;
+	//functional colors
+		--background-color: #FAF9F6;
+		--text-color: var(--black);
+		--accent-color: var(--black);
+		--accent-color-light: #EAE9E6;
+	
+	//border settings
+		--border-width: 2px;
+		--border-width-2: 8px;
+		--border-color: var(--black);
+		--border-settings-main: solid var(--border-width) var(--border-color);
+		--shadow-1: 0.35rem 0.35rem 0px var(--border-color);
+
+	//layout and spacing
+		--container-width: 1400px;		
+		--padding-1: 2.5rem;
+		--padding-2: 5rem;
+		--padding-3: 7.5rem;
+		--element-width-1: 500px;
+		--element-width-2: 800px;
+}
+/*dark mode*/
+[data-theme="dark"] {
+	--border-color: #DAD9D6;
+	--background-color: #28282B;
+	--text-color: #DAD9D6;
+	--accent-color: #DAD9D6;
+	--accent-color-light: #08080B;
+}
+
+
+@mixin card-style {
+	border: var(--border-settings-main);
+	width: 100%;
+	max-width: 800px;
+	margin-bottom: 1rem;
+	box-shadow: var(--shadow-1);
+}

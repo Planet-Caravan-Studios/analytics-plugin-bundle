@@ -1,0 +1,35 @@
+---
+interface Props {
+	title: string;
+	body: string;
+	href: string;
+}
+
+const { href, title, body } = Astro.props;
+---
+
+<li class="link-card">
+	<a href={href}>
+		<h2>
+			{title}
+			<span>&rarr;</span>
+		</h2>
+		<p>
+			{body}
+		</p>
+	</a>
+</li>
+
+<div class="Modal">
+	<div class="heading"></div>
+	<div class="">
+		
+	</div>
+</div>
+
+<style lang="scss">
+	.Modal{
+		border: var(--border-settings-main);
+		box-shadow: var(--shadow-1);
+	}
+</style>

@@ -8,6 +8,27 @@ interface Props {
 const { href, title, body } = Astro.props;
 ---
 
+<div class="pluginCard">
+	<h2>{title}</h2>
+	<p class="tagline">Make UTM tracking work the way everyone expects it to.<p>
+	<div>
+		<slot />
+	</div>
+
+	<ul class="linkGroup">
+		<li>Github Link: 
+			<a href="#"> {githubLink && githubLink ? "[coming_soon]"}</a>
+		</li>
+		<li>NPM Link: 
+			<a href="#">[coming_soon]</a>
+		</li>
+		<li>CDN Link: 
+			<a href="#">[coming_soon]</a>
+		</li>
+	</ul>
+</div>
+
+
 <li class="link-card">
 	<a href={href}>
 		<h2>
@@ -19,6 +40,8 @@ const { href, title, body } = Astro.props;
 		</p>
 	</a>
 </li>
+
+
 <style>
 	.link-card {
 		list-style: none;

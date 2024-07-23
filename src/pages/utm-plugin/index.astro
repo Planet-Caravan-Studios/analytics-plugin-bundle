@@ -1,0 +1,94 @@
+---
+import Layout from '@layouts/Layout.astro';
+import PluginCards from '@components/contentComponents/PluginCards.astro';
+import CodeBlock from '@components/CodeBlock.astro';
+import UtmTester from '@components/testingComponents/UtmTester.astro';
+import Linebreak from '@components/textComponents/Linebreak.astro';
+import UtmTestForm from '@components/Forms/UtmTestForm.astro';
+
+---
+
+<Layout 
+	title="Plugins"
+	heading="Advanced UTM Plugin | Web Marketing Plugin Suite"
+>
+	<section>
+		<div class="text-width-2">
+			<!-- Body Section -->
+			<h2>What It Is</h2>
+			<p><strong>Persistent URL Parameter Tracking</strong></p>
+			<p>Unable to track UTMs across pages?  This is what you need.  Save UTM values to the user's browsing session and include them as hidden form inputs or access them in other ways.</p>
+			<p>
+				<strong>How UTMs work:</strong> UTMs are <em>URL Parameters</em> - text strings tacked onto the end of a normal link, in other words - that extra garbage text you see on links. 
+				<Linebreak/>
+				<strong>The Problem:</strong> UTM values can traditionally only be tracked on the page the user lands on and not beyond that. Once you leave the page, you're on a new URL that isn't going to have those parameters attached to it.
+				<Linebreak/>
+				<strong>The Solution:</strong> this plugin automatically saves UTM values to your users' browsers - making them <em>persistent</em> and keeping the UTMs available to use across all pages and even from previous visits. Additional helper functions are provided to use the values in different ways.
+			</p>
+
+			<br/>
+			<hr/>
+			<br/>
+
+			<!-- New Section -->
+			<h2>Testing</h2>
+			<p>
+				Simple UTM link: <br/>
+				<a href="/utm-plugin/?utm_source=test&utm_medium=test&utm_campaign=test&utm_term=test&utm_content=test" style="word-break: break-word;">
+					/utm-plugin/?utm_source=test&utm_medium=test&utm_campaign=test&utm_term=test&utm_content=test
+				</a>
+			</p>
+			<UtmTester/>
+		</div>
+
+		<div class="text-width-2">
+			<p>
+				<mark>[Experimental]</mark> - utm_state: this variable shows the current state of the UTM parameters, and can have 3 possible values that denote the user's behavior in relation to the UTMs.
+				<Linebreak/>
+				This field can be used for basic attribution - if the value is "localStorage", that means the user has left the site and come back to it later.   
+				<Linebreak/>
+				Note that this UTM field is non-standard, and therefore will not be picked up automatically by standard analytics.  It must be manually correlated by the analytics expert.
+				
+				<ul style="margin-top: 0px;">
+					<li>"url" - The UTM params are present in the URL.  Lasts until the user navigates to a new page.</li>
+					<li>"session_short_term" - The UTM params are present in the user's session.  Lasts until the user closes the tab they're in.</li>
+					<li>"session_long_term" - The UTM params are present in the user's long-term cookie storage.  Lasts until the user clears their browser cache.</li>
+				</ul>
+			</p>
+		</div>
+	</section>
+	<section>
+		<!-- New Section -->
+		<div class="text-width-2">
+			<h2>Form Integration</h2>
+			<p>
+				To use UTMs with forms - add the below fields to your site's forms, and any time a user has UTMs present, these fields will be auto-filled. All forms with these fields will then include the user's UTM values with each form submission, allowing you to directly attribute each user.
+			</p>
+	
+		<CodeBlock codeLang="html">&lt;input type="hidden" name="utm_source" /&gt;
+&lt;input type="hidden" name="utm_medium" /&gt;
+&lt;input type="hidden" name="utm_campaign" /&gt;
+&lt;input type="hidden" name="utm_term" /&gt;
+&lt;input type="hidden" name="utm_content" /&gt;
+&lt;input type="hidden" name="utm_state" /&gt;
+		</CodeBlock>
+
+		<p>Here is a sample form that includes UTMs being added to it:</p>
+		<UtmTestForm/>
+
+		<p>And here is an alternate version of the same form where the UTM fields aren't hidden - both forms have the same data being submitted, but these extra fields should be hidden when used for real.</p>
+		<UtmTestForm alt/>
+		</div>
+		
+
+	</section>
+
+
+	
+</Layout>
+
+<style>
+	
+	
+
+</style>

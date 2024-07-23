@@ -1,0 +1,32 @@
+---
+interface Props {
+	title: string;
+	subtitle: string;
+	body: string;
+	href: string;
+}
+
+const { title, subtitle, body, href } = Astro.props;
+---
+
+<div class="MasterComponent">
+	<h2 class="title">
+		{title && "Title Text"}
+	</h2>
+	<p class="tagline">
+		{subtitle && "Subtitle Text"}
+	<p>
+	
+	<div>
+		<!-- Inner Content -->
+		<slot />
+	</div>
+
+	
+</div>
+
+<style lang="scss">
+	.MasterComponent{
+
+	}
+</style>

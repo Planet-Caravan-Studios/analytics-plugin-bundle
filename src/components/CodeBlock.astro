@@ -1,0 +1,43 @@
+---
+interface Props {
+	codeLang: string;
+	body: string;
+	href: string;
+}
+
+const { href, codeLang, body } = Astro.props;
+---
+
+<div class="CodeBlock">
+	<div class="codeLang">Code: [{codeLang}]</div>
+	<div class="codeWrapper"><pre><code><slot>Code goes here...</slot></code></pre><div>
+
+	
+</div>
+
+<style lang="scss">
+	.CodeBlock{
+		border: var(--border-settings-main);
+		width: 100%;
+		max-width: 800px;
+		max-width: var(--element-width-2);
+		box-shadow: var(--shadow-1);
+		margin: auto;
+		margin-bottom: 4rem;
+		.codeLang{
+			border-bottom: var(--border-settings-main);
+			padding-left: 1rem;
+			padding-top: 0.25rem;
+			padding-bottom: 0.25rem;
+			background-color: var(--black);
+			color: var(--white);
+		}
+		.codeWrapper{
+			font-size: 1.2rem;
+			padding: 1em;
+			pre{
+				margin: 0;
+			}
+		}
+	}
+</style>

@@ -1,0 +1,169 @@
+---
+interface Props {
+	title: string;
+	subtitle: string;
+	body: string;
+	href: string;
+}
+
+const { title, subtitle, body, href } = Astro.props;
+---
+
+<!-- <div class="MasterComponent">
+	<h2 class="title">
+		{title && "Title Text"}
+	</h2>
+	<p class="tagline">
+		{subtitle && "Subtitle Text"}
+	<p>
+	
+	<div>
+		<slot />
+	</div>
+
+	
+</div> -->
+
+<!-- UTM Tester Tool -->
+<div  class="UTMTesterTool">
+	<div class="heading">
+		<h2>UTM Tester:</h2>
+		<p>shows your current UTM values</p>
+	</div>
+	
+	<div class="cell">
+		<span class="utmLabel">utm_source:</span> <span class="utmField" data-utm="utm_source"></span>
+	</div>
+	<div class="cell">
+		<span class="utmLabel">utm_medium:</span> <span class="utmField" data-utm="utm_medium"></span>
+	</div>
+	<div class="cell">
+		<span class="utmLabel">utm_campaign:</span> <span class="utmField" data-utm="utm_campaign"></span>
+	</div>
+	<div class="cell">
+		<span class="utmLabel">utm_term:</span> <span class="utmField" data-utm="utm_term"></span>
+	</div>
+	<div class="cell">
+		<span class="utmLabel">utm_content:</span> <span class="utmField" data-utm="utm_content"></span>
+	</div>
+	<div class="cell">
+		<span class="utmLabel">utm_state:</span> <span class="utmField" data-utm="utm_state"></span>
+	</div>
+
+</div>
+
+<style lang="scss">
+	.UTMTesterTool{
+		padding: 1em;
+		border: var(--border-settings-main);
+		width: 100%;
+		max-width: var(--element-width-2);
+		box-shadow: var(--shadow-1);
+		margin: auto;
+		margin-bottom: 4rem;
+		.heading{
+			border-bottom:var(--border-settings-main);
+			padding-bottom: 0.5em;
+			margin-bottom: 0.5em;
+			h2{
+				margin: 0;
+				margin-bottom: 1em;
+				display: inline;
+			}
+			p{
+				display: inline;
+			}
+		}
+		
+	}
+	.UTMTesterTool .cell{
+		border-bottom:var(--border-settings-main);
+		padding-bottom: 0.5em;
+		margin-bottom: 0.5em;
+		display: flex;
+		align-items: center;
+	}
+	.utmLabel{
+		display: inline-block;
+		padding: 0.25em;
+		width: 15ch;
+	}
+	.utmField{
+		display: inline-block;
+		border: var(--border-settings-main);
+		padding: 0.25em;
+		width: 25ch;
+		height: 2em;
+	}
+</style>
+
+<script>
+/* ===== Helper Functions  ===== */
+	//check if element exists
+	function elementExists(selector) {
+		return document.querySelector(selector) !== null;
+	}
+
+	//Grab all values at once for efficiency
+	let utm_values = GetUTMs();
+	//console.log(utm_values);
+	//event settings
+	let utm_campaign = utm_values.utm_campaign;
+	let utm_content = utm_values.utm_content;
+	let utm_medium = utm_values.utm_medium;
+	let utm_source = utm_values.utm_source;
+	let utm_term = utm_values.utm_term;
+	let utm_state = utm_values.utm_state;
+
+/* ===== UTM Tester vars  ===== */
+	//var UtmTester = document.querySelector(".UTMTesterTool");
+	const testerUtmSource = document.querySelector(".UTMTesterTool [data-utm='utm_source']");
+	const testerUtmMedium = document.querySelector(".UTMTesterTool [data-utm='utm_medium']");
+	const testerUtmCampaign = document.querySelector(".UTMTesterTool [data-utm='utm_campaign']");
+	const testerUtmTerm = document.querySelector(".UTMTesterTool [data-utm='utm_term']");
+	const testerUtmContent = document.querySelector(".UTMTesterTool [data-utm='utm_content']");
+	const testerUtmState = document.querySelector(".UTMTesterTool [data-utm='utm_state']");
+
+	/* ===== MTM Tester vars  ===== */
+	//var MtmTester = document.querySelector(".UTMTesterTool");
+	//const testerMtmSource = document.querySelector(".UTMTesterTool [data-utm='mtm_source']");
+	//const testerMtmMedium = document.querySelector(".UTMTesterTool [data-utm='mtm_medium']");
+	//const testerMtmCampaign = document.querySelector(".UTMTesterTool [data-utm='mtm_campaign']");
+	//const testerMtmContent = document.querySelector(".UTMTesterTool [data-utm='mtm_content']");
+	//const testerMtmKwd = document.querySelector(".UTMTesterTool [data-utm='mtm_kwd']");
+	//const testerMtmCid = document.querySelector(".UTMTesterTool [data-utm='mtm_cid']");
+	//const testerMtmGroup = document.querySelector(".UTMTesterTool [data-utm='mtm_group']");
+	//const testerMtmPlacement = document.querySelector(".UTMTesterTool [data-utm='mtm_placement']");
+
+/* ===== Fill in testing tool ===== */
+	function utm_test_fill() {
+		console.log('utm_test_fill()');
+		testerUtmSource.textContent = utm_source || 'NULL';
+		testerUtmMedium.textContent = utm_medium || 'NULL';
+		testerUtmCampaign.textContent = utm_campaign || 'NULL';
+		testerUtmTerm.textContent = utm_term || 'NULL';
+		testerUtmContent.textContent = utm_content || 'NULL';
+		testerUtmState.textContent = utm_state || 'NULL';
+	};
+
+	function mtm_test_fill() {
+		//console.log('mtm_test_fill()');
+		//testerMtmSource.textContent = mtm_source.paramValue;
+		//testerMtmMedium.textContent = mtm_medium.paramValue;
+		//testerMtmCampaign.textContent = mtm_campaign.paramValue;
+		//testerMtmContent.textContent = mtm_content.paramValue;
+		//testerMtmKwd.textContent = mtm_kwd.paramValue;
+
+		//testerMtmCid.textContent = mtm_cid.paramValue;
+		//testerMtmGroup.textContent = mtm_group.paramValue;
+		//testerMtmPlacement.textContent = mtm_placement.paramValue;
+	};
+
+	if(elementExists('.UTMTesterTool')){
+		utm_test_fill();
+	}
+	//if(elementExists('.MTMTesterTool')){
+	//	mtm_test_fill();
+	//}
+	
+</script>

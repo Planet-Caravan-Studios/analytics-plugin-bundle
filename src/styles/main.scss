@@ -1,0 +1,94 @@
+
+@import url("variables.scss");
+
+
+/*dark mode*/
+[data-theme="dark"] {
+	--border-color: #DAD9D6;
+	--background-color: #28282B;
+	--text-color: #DAD9D6;
+	--accent-color: #DAD9D6;
+	--accent-color-light: #08080B;
+}
+.kode-mono{
+  font-family: "Kode Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+//box-size reset
+*,*:before,*:after{
+	box-sizing: border-box;
+}
+
+
+/* ===== ===================== ===== */
+/* ===== General HTML Settings ===== */
+/* ===== ===================== ===== */
+	html {
+		font-family: "Kode Mono", monospace;
+		background: var(--background-color);
+		color: var(--text-color);
+	}
+
+	/* ===== Basic Text Settings ===== */
+		h1, h2, h3, h4, h5, h6{
+			font-family: "Kode Mono", monospace;
+			font-size: 1.5rem;
+			//margin-top: 0;
+			margin-bottom:0.5em;
+		}
+		p{
+			margin-top: 0;
+		}
+		ul{
+			font-size: 1em;
+			li{
+				margin-bottom: 0.5em;
+			}
+		}
+		hr{
+			border-top: var(--border-settings-main);
+		}
+
+	/* ===== Basic Layout/Sections ===== */
+		section{
+			padding: var(--padding-1) var(--padding-2);
+			&.noPadding{
+				padding: 0;
+			}
+		}
+
+
+/*======================*/
+/*===== Typography =====*/
+/*======================*/
+	/*===== Sizes =====*/
+	.text-size-0{
+		font-size: 0.5rem;
+	}
+	.text-size-1{
+		font-size: 1rem;
+	}
+	.text-size-2{
+		font-size: 1.5rem;
+	}
+	.text-size-3{
+		font-size: 2rem;
+	}
+	.text-size-4{
+		font-size: 2.5rem;
+	}
+
+	.text-width-1{
+		max-width: var(--element-width-1);
+		width: 100%;
+		margin: auto;
+	}
+	.text-width-2{
+		max-width: var(--element-width-2);
+		width: 100%;
+		margin: auto;
+	}
+	
