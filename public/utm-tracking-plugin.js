@@ -2,11 +2,19 @@
 /*
   Advanced UTM Tracking
   - Allows UTM values to be used at any time during the user's session for better tracking and attribution.
-  - Includes extra helper functions for including UTM data in forms and sending custom event data to Google Analytics
+  - Includes extra helper functions for including UTM data in forms and sending custom event data to Google Analytics.
   
   WARNINGS:
   - Event Naming Rules for GA: https://support.google.com/analytics/answer/13316687?hl=en&ref_topic=13367860&sjid=17187452480426313666-NA#zippy=%2Cweb
   -- Avoid Shortlist: 'click', 'error', 'form_submit', 'form_start', 'file_download'
+
+  - Event Name limits & formatting: https://developers.google.com/analytics/devguides/collection/protocol/ga4/sending-events?client_type=gtag#limitations 
+  -- 40 characters or less, only letters, numbers, and underscores, must start with a letter.
+  -- no dashes, only underscores.
+
+  - NOTE: due to event name character limit, the DetailedSimpleEvent() function uses events formatted like 'event_type__event_id', such as 'utm_returning_user__event_2'
+  -- You must include the event definitions in your project's Analytics Workbook for later reference, as they don't have long enough names to include full details of what they mean.
+
 */
 /* ============================================================ */
 
@@ -243,21 +251,17 @@
     }
 
     /* ===== Custom Simple Event with some UTM data ===== */
-    function DetailedSimpleEvent(campaign, source){
-        let eventName = "utm_landing--campaign_"+campaign+"--source_"+source;
+    function DetailedSimpleEvent(prefix, detail){
+        let delimiter = "__";
+        let eventName = prefix+delimiter+detail;
         SimpleUtmEvent(eventName);
     }
 
     /* ===== Fill form fields with UTM data ===== */
     function UtmFormFill(utm_campaign, utm_content, utm_medium, utm_source, utm_term, utm_state) {
-        
         //forEach loop to target ALL forms on a page
         let elements = document.querySelectorAll('form');
         elements.forEach(element => {
-            //do the thing
-            element.classList.add("active");
-            //element.classList.remove("active");
-
             //DOM element vars
             let inputUtmSource = element.querySelector('input[name="utm_source"]');
             let inputUtmMedium = element.querySelector('input[name="utm_medium"]');
@@ -274,9 +278,6 @@
             inputUtmContent.value = utm_content;
             inputUtmState.value = utm_state;
         });
-        
-        
-
         return false;
     };
 
@@ -314,7 +315,7 @@
             }, pageLoadDelay); //time in ms
         });
 
-    /* ===== UTM Event Trigger ===== */ 
+    /* ===== Basic User Landing Event | UTM Event Trigger ===== */ 
         //User lands on page with UTMs present in URL
         if(CheckForUtm('url')){
             //Grab all values at once for efficiency
@@ -331,12 +332,17 @@
 
             //Simple Event push - just an event name 
             SimpleUtmEvent("utm_landing");
-            DetailedSimpleEvent(utm_campaign, utm_source);
+            //Detailed Simple Event push - just event name, but formatted for basic data
+            let prefix = "utm_landing";
+            let detail = "event_1"
+            DetailedSimpleEvent(prefix, detail);
 
         } else {
             //UTMs not present in current URL, do nothing
         }
-
+    /* ===== Returning Long-Term User | UTM Event Trigger ===== */ 
+    //WORK-IN-PROGRESS NOTES: Needs to be set up to only fire once per session,
+    //not on every page load
         if(CheckForUtm('session_long_term')){
             let utm_values = GetUTMs();
             //Complex Event push - all UTM data
@@ -347,13 +353,55 @@
             let utm_term = utm_values.utm_term;
             let utm_state = utm_values.utm_state;
 
-            let eventName = "utm_returning_user--campaign_"+utm_campaign+"--source_"+utm_source;
-            SimpleUtmEvent(eventName);
-        }
-
-/* ===== ================================================= ===== */
-/* ===== Manual Functions | Only run in certain conditions ===== */
-/* ===== ================================================= ===== */
-    
+            //Detailed Simple Event push - just event name, but formatted for basic data
+            let prefix = "utm_return_user";
+            let detail = "event_2";
+            DetailedSimpleEvent(prefix, detail);
+        }  
 
 /* ===== END of file ===== */
+
+
+/* ===== =============================== ===== */
+/* ===== =============================== ===== */
+/* ===== WORK-IN-PROGRESS /// SCRAP CODE ===== */
+/* ===== =============================== ===== */
+/* ===== =============================== ===== */
+
+
+function setLocalStorageWithExpiry(key, value, days) {
+    const now = new Date();
+    const expiry = now.getTime() + (days * 24 * 60 * 60 * 1000); // Expiry time in milliseconds
+    
+    const item = {
+        value: value,
+        expiry: expiry
+    };
+    
+    localStorage.setItem(key, JSON.stringify(item));
+}
+
+function getLocalStorageWithExpiry(key) {
+    const itemStr = localStorage.getItem(key);
+    // If the item doesn't exist, return null
+    if (!itemStr) {
+        return null;
+    }
+    
+    const item = JSON.parse(itemStr);
+    const now = new Date();
+    
+    // Compare the expiry time of the item with the current time
+    if (now.getTime() > item.expiry) {
+        // If the item is expired, remove it from storage and return null
+        localStorage.removeItem(key);
+        return null;
+    }
+    
+    return item.value;
+}
+
+// Example usage:
+setLocalStorageWithExpiry('myKey', 'myValue', 30);
+const value = getLocalStorageWithExpiry('myKey');
+console.log(value); // Will print 'myValue' if within 30 days, otherwise null
