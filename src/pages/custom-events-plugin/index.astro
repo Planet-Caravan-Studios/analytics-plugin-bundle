@@ -1,0 +1,50 @@
+---
+import Layout from '@layouts/Layout.astro';
+import PluginCards from '@components/contentComponents/PluginCards.astro';
+import CodeBlock from '@components/CodeBlock.astro';
+import EventTester from '@components/testingComponents/EventTester.astro';
+import Linebreak from '@components/textComponents/Linebreak.astro';
+import UtmTestForm from '@components/Forms/UtmTestForm.astro';
+
+---
+
+<Layout 
+	title="Plugins"
+	heading="Custom Analytics Events | Web Marketing Plugin Suite"
+>
+	<section>
+		<div class="text-width-2">
+			<!-- Body Section -->
+			<h2>What It Is</h2>
+			<p><strong>Custom Behavioral Tracking For Google Analytics</strong></p>
+			<p>Need to track more than just page views? Need event names and triggers that aren't included by default? Do you need to tag a large number of elements to get detailed user behavior? <strong>This is what you need.</strong></p>
+			
+		</div>
+	</section>
+	
+	<hr/>
+
+	<section>
+		<div class="text-width-2">
+			<!-- New Section -->
+			<h2>Testing</h2>
+			<p>
+				Simple UTM link: <br/>
+				<a href="/utm-plugin/?utm_source=test&utm_medium=test&utm_campaign=test&utm_term=test&utm_content=test" style="word-break: break-word;">
+					/utm-plugin/?utm_source=test&utm_medium=test&utm_campaign=test&utm_term=test&utm_content=test
+				</a>
+			</p>
+
+			<EventTester/>
+
+		</div>
+
+	</section>
+	
+</Layout>
+
+<style>
+	
+	
+
+</style>
