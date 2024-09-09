@@ -92,3 +92,32 @@
 		margin: auto;
 	}
 	
+
+/*===================*/
+/*===== Buttons =====*/
+/*===================*/
+.button-1{
+	background-color: var(--black);
+	color: var(--white);
+	padding: 0.5em 1em;
+	text-decoration: none;
+	display: inline-block;
+	margin: 0.5em 0.5em;
+	text-align: center;
+	
+	&:hover{
+		text-decoration: underline;
+		text-decoration-style: dotted;
+	}
+}
+
+
+/*=========================*/
+/*===== Basic Layouts =====*/
+/*=========================*/
+.flexRow{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-content: flex-start;
+}

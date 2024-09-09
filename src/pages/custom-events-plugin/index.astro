@@ -4,8 +4,6 @@ import PluginCards from '@components/contentComponents/PluginCards.astro';
 import CodeBlock from '@components/CodeBlock.astro';
 import EventTester from '@components/testingComponents/EventTester.astro';
 import Linebreak from '@components/textComponents/Linebreak.astro';
-import UtmTestForm from '@components/Forms/UtmTestForm.astro';
-
 ---
 
 <Layout 
@@ -28,17 +26,53 @@ import UtmTestForm from '@components/Forms/UtmTestForm.astro';
 		<div class="text-width-2">
 			<!-- New Section -->
 			<h2>Testing</h2>
-			<p>
-				Simple UTM link: <br/>
-				<a href="/utm-plugin/?utm_source=test&utm_medium=test&utm_campaign=test&utm_term=test&utm_content=test" style="word-break: break-word;">
-					/utm-plugin/?utm_source=test&utm_medium=test&utm_campaign=test&utm_term=test&utm_content=test
-				</a>
-			</p>
+			
+			<div class="flexRow">
+				<a 
+					class="button-1" 
+					href="#custom_event_1" 
+					data-click-event="custom_event_1"
+				>Custom Event 1</a>
+				<a 
+					class="button-1" 
+					href="#custom_event_2" 
+					data-click-event="custom_event_2"
+				>Custom Event 2</a>
+				<a 
+					class="button-1" 
+					href="#custom_event_3" 
+					data-click-event="custom_event_3"
+				>Custom Event 3</a>
+				<a 
+					class="button-1" 
+					href="#custom_event_4" 
+					data-click-event="custom_event_4"
+				>Custom Event 4</a>
+				<a 
+					class="button-1" 
+					href="#custom_event_5" 
+					data-click-event="custom_event_5"
+				>Custom Event 5</a>
+			</div>
 
 			<EventTester/>
 
 		</div>
 
+	</section>
+
+	<hr/>
+
+	<section>
+		<div class="text-width-2">
+			<!-- New Section -->
+			<h2>Expansion Modules</h2>
+
+			<ul>
+				<li>Bot Detection Events</li>
+				<li>Advanced Behavior Events</li>
+			</ul>
+		</div>
 	</section>
 	
 </Layout>

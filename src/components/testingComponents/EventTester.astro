@@ -10,14 +10,14 @@ const { title, subtitle, body, href } = Astro.props;
 ---
 
 <!-- UTM Tester Tool -->
-<div  class="EventTesterTool">
+<div  class="EventTesterTool" id="EventTesterTool">
 	<div class="heading">
 		<h2>Event Tester:</h2>
 		<p>shows your live event data</p>
 	</div>
 	
 	<div class="output">
-		Event Name: EventTest | Timestamp: 12:12:30pm
+		<div class="outputLine">Event Name: <span class='highlight'>example_event</span> | Timestamp: <span class='highlight'>12:12:59</span></div>
 	</div>
 
 </div>
@@ -44,96 +44,99 @@ const { title, subtitle, body, href } = Astro.props;
 				display: inline;
 			}
 		}
+
+		.output{
+			padding: 1em;
+			border: var(--border-settings-main);
+			width: 100%;
+			height: 15em;
+			overflow-y: scroll;
+			/*.outputLine{
+				border-bottom: var(--border-settings-main);
+				&::before{
+					content:">";
+					font-weight: 800;
+					font-size: 1.5em;
+				}
+			}*/
+		} 
 		
 	}
-	.UTMTesterTool .cell{
-		border-bottom:var(--border-settings-main);
-		padding-bottom: 0.5em;
+</style>
+
+<style lang="scss" is:global>
+	.EventTesterTool .output .outputLine{
+		border-bottom: var(--border-settings-main);
 		margin-bottom: 0.5em;
-		display: flex;
-		align-items: center;
-	}
-	.utmLabel{
-		display: inline-block;
-		padding: 0.25em;
-		width: 15ch;
-	}
-	.utmField{
-		display: inline-block;
-		border: var(--border-settings-main);
-		padding: 0.25em;
-		width: 25ch;
-		height: 2em;
+		&::before{
+			content:">";
+			font-weight: 800;
+			font-size: 1.5em;
+			margin-right: 1em;
+		}
+		.highlight{
+			display: inline-block;
+			color: var(--white);
+			background-color: var(--black);
+			padding: 0px 5px;
+		}
 	}
 </style>
 
 <script>
-/* ===== Helper Functions  ===== */
-	//check if element exists
-	function elementExists(selector) {
-		return document.querySelector(selector) !== null;
-	}
+//Get TimeStamp
+function BasicTimestamp() {
+	let currentDate = new Date();
 
-	//Grab all values at once for efficiency
-	let utm_values = GetUTMs();
-	//console.log(utm_values);
-	//event settings
-	let utm_campaign = utm_values.utm_campaign;
-	let utm_content = utm_values.utm_content;
-	let utm_medium = utm_values.utm_medium;
-	let utm_source = utm_values.utm_source;
-	let utm_term = utm_values.utm_term;
-	let utm_state = utm_values.utm_state;
+	//let year = currentDate.getFullYear();
+	//let month = currentDate.getMonth() + 1; // Months are zero-based, so add 1
+	//let day = currentDate.getDate();
+	let hours = currentDate.getHours();
+	let minutes = currentDate.getMinutes();
+	let seconds = currentDate.getSeconds();
 
-/* ===== UTM Tester vars  ===== */
-	//var UtmTester = document.querySelector(".UTMTesterTool");
-	const testerUtmSource = document.querySelector(".UTMTesterTool [data-utm='utm_source']");
-	const testerUtmMedium = document.querySelector(".UTMTesterTool [data-utm='utm_medium']");
-	const testerUtmCampaign = document.querySelector(".UTMTesterTool [data-utm='utm_campaign']");
-	const testerUtmTerm = document.querySelector(".UTMTesterTool [data-utm='utm_term']");
-	const testerUtmContent = document.querySelector(".UTMTesterTool [data-utm='utm_content']");
-	const testerUtmState = document.querySelector(".UTMTesterTool [data-utm='utm_state']");
+	//console.log(`${year}-${month}-${day} ${hours}:${minutes}:${seconds}`);
+	let formattedTimestamp = `${hours}:${minutes}:${seconds}`;
+	return formattedTimestamp;
+}
 
-	/* ===== MTM Tester vars  ===== */
-	//var MtmTester = document.querySelector(".UTMTesterTool");
-	//const testerMtmSource = document.querySelector(".UTMTesterTool [data-utm='mtm_source']");
-	//const testerMtmMedium = document.querySelector(".UTMTesterTool [data-utm='mtm_medium']");
-	//const testerMtmCampaign = document.querySelector(".UTMTesterTool [data-utm='mtm_campaign']");
-	//const testerMtmContent = document.querySelector(".UTMTesterTool [data-utm='mtm_content']");
-	//const testerMtmKwd = document.querySelector(".UTMTesterTool [data-utm='mtm_kwd']");
-	//const testerMtmCid = document.querySelector(".UTMTesterTool [data-utm='mtm_cid']");
-	//const testerMtmGroup = document.querySelector(".UTMTesterTool [data-utm='mtm_group']");
-	//const testerMtmPlacement = document.querySelector(".UTMTesterTool [data-utm='mtm_placement']");
-
-/* ===== Fill in testing tool ===== */
-	function utm_test_fill() {
-		console.log('utm_test_fill()');
-		testerUtmSource.textContent = utm_source || 'NULL';
-		testerUtmMedium.textContent = utm_medium || 'NULL';
-		testerUtmCampaign.textContent = utm_campaign || 'NULL';
-		testerUtmTerm.textContent = utm_term || 'NULL';
-		testerUtmContent.textContent = utm_content || 'NULL';
-		testerUtmState.textContent = utm_state || 'NULL';
-	};
-
-	function mtm_test_fill() {
-		//console.log('mtm_test_fill()');
-		//testerMtmSource.textContent = mtm_source.paramValue;
-		//testerMtmMedium.textContent = mtm_medium.paramValue;
-		//testerMtmCampaign.textContent = mtm_campaign.paramValue;
-		//testerMtmContent.textContent = mtm_content.paramValue;
-		//testerMtmKwd.textContent = mtm_kwd.paramValue;
-
-		//testerMtmCid.textContent = mtm_cid.paramValue;
-		//testerMtmGroup.textContent = mtm_group.paramValue;
-		//testerMtmPlacement.textContent = mtm_placement.paramValue;
-	};
-
-	if(elementExists('.UTMTesterTool')){
-		utm_test_fill();
-	}
-	//if(elementExists('.MTMTesterTool')){
-	//	mtm_test_fill();
-	//}
+//Create Text Element
+function EventTesterToolText(event_name){
+	console.log("EventTesterToolText()");
+	//Initial Vars
+		let text = "Event Name: <span class='highlight'>{event_name}</span> | Timestamp: <span class='highlight'>{timestamp}</span>";
+		let timestamp = BasicTimestamp();
 	
+	//Formatting
+		//update with event name
+		text = text.replace('{event_name}', event_name);
+		//update with timestamp
+		text = text.replace('{timestamp}', timestamp);
+
+	//Add HTML tags
+		let htmlString = `<div class="outputLine">${text}</div>`
+	//Return full output
+		return htmlString; 
+}
+
+function EventTesterToolNewLine(event_name){
+	console.log("EventTesterToolNewLine()");
+	let parentElement = document.querySelector('#EventTesterTool .output');
+	let htmlString = EventTesterToolText(event_name);
+	console.log(htmlString);
+	//parentElement.innerHtml += htmlString;
+	parentElement.insertAdjacentHTML("beforeend", htmlString)
+	
+	return false;
+}
+
+//TRIGGER
+let elements = document.querySelectorAll('[data-click-event]');
+elements.forEach(element => {
+	element.addEventListener('click', function() {
+		console.log('[data-click-event] click');
+		let event_name = element.getAttribute("data-click-event");
+		EventTesterToolNewLine(event_name);
+	}, false);
+});
 </script>
