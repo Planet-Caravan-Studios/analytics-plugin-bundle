@@ -3,11 +3,6 @@
 	import "@styles/main.scss"
 
 //Props
-	interface Props {
-		title: string;
-		description: string;
-		heading: string;
-	}
 	const { title, description, heading } = Astro.props;
 
 
@@ -17,21 +12,22 @@
 <html lang="en" data-theme="light">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<title>{title} | Planet Caravan Studios</title>
+		<meta name="description" content={description ? description : "Marketing Analytics Plugins & Tools"} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Kode+Mono&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-		<title>{title} | Planet Caravan Studios</title>
+		
 
 		<!-- Google Tag Manager -->
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-WN2V7LM');</script>
+		})(window,document,'script','dataLayer','GTM-WN2V7LM');</script> -->
 		<!-- End Google Tag Manager -->	
 	</head>
 	<body>

@@ -343,7 +343,7 @@
     /* ===== Returning Long-Term User | UTM Event Trigger ===== */ 
     //WORK-IN-PROGRESS NOTES: Needs to be set up to only fire once per session,
     //not on every page load
-        if(CheckForUtm('session_long_term')){
+        /* if(CheckForUtm('session_long_term')){
             let utm_values = GetUTMs();
             //Complex Event push - all UTM data
             let utm_campaign = utm_values.utm_campaign;
@@ -357,7 +357,7 @@
             let prefix = "utm_return_user";
             let detail = "event_2";
             DetailedSimpleEvent(prefix, detail);
-        }  
+        } */  
 
 /* ===== END of file ===== */
 

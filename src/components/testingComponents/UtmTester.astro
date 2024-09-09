@@ -1,12 +1,5 @@
 ---
-interface Props {
-	title: string;
-	subtitle: string;
-	body: string;
-	href: string;
-}
-
-const { title, subtitle, body, href } = Astro.props;
+const {} = Astro.props;
 ---
 
 <!-- <div class="MasterComponent">
@@ -116,13 +109,7 @@ const { title, subtitle, body, href } = Astro.props;
 	let utm_state = utm_values.utm_state;
 
 /* ===== UTM Tester vars  ===== */
-	//var UtmTester = document.querySelector(".UTMTesterTool");
-	const testerUtmSource = document.querySelector(".UTMTesterTool [data-utm='utm_source']");
-	const testerUtmMedium = document.querySelector(".UTMTesterTool [data-utm='utm_medium']");
-	const testerUtmCampaign = document.querySelector(".UTMTesterTool [data-utm='utm_campaign']");
-	const testerUtmTerm = document.querySelector(".UTMTesterTool [data-utm='utm_term']");
-	const testerUtmContent = document.querySelector(".UTMTesterTool [data-utm='utm_content']");
-	const testerUtmState = document.querySelector(".UTMTesterTool [data-utm='utm_state']");
+	
 
 	/* ===== MTM Tester vars  ===== */
 	//var MtmTester = document.querySelector(".UTMTesterTool");
@@ -137,27 +124,36 @@ const { title, subtitle, body, href } = Astro.props;
 
 /* ===== Fill in testing tool ===== */
 	function utm_test_fill() {
+		//Function Vars
+		//var UtmTester = document.querySelector(".UTMTesterTool");
+		let testerUtmSource = document.querySelector(".UTMTesterTool [data-utm='utm_source']");
+		let testerUtmMedium = document.querySelector(".UTMTesterTool [data-utm='utm_medium']");
+		let testerUtmCampaign = document.querySelector(".UTMTesterTool [data-utm='utm_campaign']");
+		let testerUtmTerm = document.querySelector(".UTMTesterTool [data-utm='utm_term']");
+		let testerUtmContent = document.querySelector(".UTMTesterTool [data-utm='utm_content']");
+		let testerUtmState = document.querySelector(".UTMTesterTool [data-utm='utm_state']");
+
 		console.log('utm_test_fill()');
-		testerUtmSource.textContent = utm_source || 'NULL';
-		testerUtmMedium.textContent = utm_medium || 'NULL';
-		testerUtmCampaign.textContent = utm_campaign || 'NULL';
-		testerUtmTerm.textContent = utm_term || 'NULL';
-		testerUtmContent.textContent = utm_content || 'NULL';
-		testerUtmState.textContent = utm_state || 'NULL';
+		testerUtmSource.textContent = utm_source.paramValue || 'n/a';
+		testerUtmMedium.textContent = utm_medium.paramValue || 'n/a';
+		testerUtmCampaign.textContent = utm_campaign.paramValue || 'n/a';
+		testerUtmTerm.textContent = utm_term.paramValue || 'n/a';
+		testerUtmContent.textContent = utm_content.paramValue || 'n/a';
+		//testerUtmState.textContent = utm_state.paramValue || 'n/a';
 	};
 
-	function mtm_test_fill() {
-		//console.log('mtm_test_fill()');
-		//testerMtmSource.textContent = mtm_source.paramValue;
-		//testerMtmMedium.textContent = mtm_medium.paramValue;
-		//testerMtmCampaign.textContent = mtm_campaign.paramValue;
-		//testerMtmContent.textContent = mtm_content.paramValue;
-		//testerMtmKwd.textContent = mtm_kwd.paramValue;
+	/* function mtm_test_fill() {
+		console.log('mtm_test_fill()');
+		testerMtmSource.textContent = mtm_source.paramValue;
+		testerMtmMedium.textContent = mtm_medium.paramValue;
+		testerMtmCampaign.textContent = mtm_campaign.paramValue;
+		testerMtmContent.textContent = mtm_content.paramValue;
+		testerMtmKwd.textContent = mtm_kwd.paramValue;
 
-		//testerMtmCid.textContent = mtm_cid.paramValue;
-		//testerMtmGroup.textContent = mtm_group.paramValue;
-		//testerMtmPlacement.textContent = mtm_placement.paramValue;
-	};
+		testerMtmCid.textContent = mtm_cid.paramValue;
+		testerMtmGroup.textContent = mtm_group.paramValue;
+		testerMtmPlacement.textContent = mtm_placement.paramValue;
+	}; */
 
 	if(elementExists('.UTMTesterTool')){
 		utm_test_fill();

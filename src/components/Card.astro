@@ -1,11 +1,5 @@
 ---
-interface Props {
-	title: string;
-	body: string;
-	href: string;
-}
-
-const { href, title, body } = Astro.props;
+const { title, githubLink } = Astro.props;
 ---
 
 <div class="pluginCard">
@@ -17,7 +11,7 @@ const { href, title, body } = Astro.props;
 
 	<ul class="linkGroup">
 		<li>Github Link: 
-			<a href="#"> {githubLink && githubLink ? "[coming_soon]"}</a>
+			<a href="#"> {githubLink ? githubLink : "[coming_soon]"}</a>
 		</li>
 		<li>NPM Link: 
 			<a href="#">[coming_soon]</a>
@@ -27,20 +21,6 @@ const { href, title, body } = Astro.props;
 		</li>
 	</ul>
 </div>
-
-
-<li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
-</li>
-
 
 <style>
 	.link-card {
