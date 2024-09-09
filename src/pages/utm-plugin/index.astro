@@ -1,6 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import PluginCards from '@components/contentComponents/PluginCards.astro';
+//import PluginCards from '@components/contentComponents/PluginCards.astro';
 import CodeBlock from '@components/CodeBlock.astro';
 import UtmTester from '@components/testingComponents/UtmTester.astro';
 import Linebreak from '@components/textComponents/Linebreak.astro';
@@ -40,6 +40,33 @@ import UtmTestForm from '@components/Forms/UtmTestForm.astro';
 					/utm-plugin/?utm_source=test&utm_medium=test&utm_campaign=test&utm_term=test&utm_content=test
 				</a>
 			</p>
+			<div class="flexRow">
+				<a 
+					class="button-1" 
+					href="#custom_event_1" 
+					data-click-event="custom_event_1"
+				>Custom Event 1</a>
+				<a 
+					class="button-1" 
+					href="#custom_event_2" 
+					data-click-event="custom_event_2"
+				>Custom Event 2</a>
+				<a 
+					class="button-1" 
+					href="#custom_event_3" 
+					data-click-event="custom_event_3"
+				>Custom Event 3</a>
+				<a 
+					class="button-1" 
+					href="#custom_event_4" 
+					data-click-event="custom_event_4"
+				>Custom Event 4</a>
+				<a 
+					class="button-1" 
+					href="#custom_event_5" 
+					data-click-event="custom_event_5"
+				>Custom Event 5</a>
+			</div>
 			<UtmTester/>
 		</div>
 
@@ -56,6 +83,12 @@ import UtmTestForm from '@components/Forms/UtmTestForm.astro';
 					<li>"session_short_term" - The UTM params are present in the user's session.  Lasts until the user closes the tab they're in.</li>
 					<li>"session_long_term" - The UTM params are present in the user's long-term cookie storage.  Lasts until the user clears their browser cache.</li>
 				</ul>
+			</p>
+
+			<p>
+				<mark>[Experimental]</mark> - utm_timestamp: this variable shows the current state of the UTM parameters, and can have 3 possible values that denote the user's behavior in relation to the UTMs.
+				<Linebreak/>
+				Note that this UTM field is non-standard, and therefore will not be picked up automatically by standard analytics.  It must be manually correlated by the analytics expert.
 			</p>
 		</div>
 
