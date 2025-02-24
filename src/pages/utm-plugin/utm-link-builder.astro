@@ -1,0 +1,112 @@
+---
+import Layout from '@layouts/Layout.astro';
+//import PluginCards from '@components/contentComponents/PluginCards.astro';
+import CodeBlock from '@components/CodeBlock.astro';
+import UtmTester from '@components/testingComponents/UtmTester.astro';
+import Linebreak from '@components/textComponents/Linebreak.astro';
+import UtmTestForm from '@components/Forms/UtmTestForm.astro';
+
+---
+
+<Layout 
+	title="UTM Link Builder"
+	heading="UTM Link Builder | Power_User Tools"
+>
+	<section>
+		<div class="text-width-2">
+			<!-- Body Section -->
+			<h2>What It Is</h2>
+			<p><strong>Persistent URL Parameter Tracking</strong></p>
+			<p>Unable to track UTMs across pages?  This is what you need.  Save UTM values to the user's browsing session and include them as hidden form inputs or access them in other ways.</p>
+			<p>
+				<strong>How UTMs work:</strong> UTMs are <em>URL Parameters</em> - text strings tacked onto the end of a normal link, in other words - that extra garbage text you see on links. 
+				<Linebreak/>
+				<strong>The Problem:</strong> UTM values can traditionally only be tracked on the page the user lands on and not beyond that. Once you leave the page, you're on a new URL that isn't going to have those parameters attached to it.
+				<Linebreak/>
+				<strong>The Solution:</strong> this plugin automatically saves UTM values to your users' browsers - making them <em>persistent</em> and keeping the UTMs available to use across all pages and even from previous visits. Additional helper functions are provided to use the values in different ways.
+			</p>
+		</div>
+	</section>
+
+	<section>
+		<form id="linkBuilderForm">
+			<label for="baseUrl">Base URL</label>
+			<input type="text" id="baseUrl" placeholder="Enter base URL (e.g., https://example.com)" required>
+		
+			<label for="utm_campaign">UTM Campaign</label>
+			<input type="text" id="utm_campaign" placeholder="Enter utm_campaign">
+		
+			<label for="utm_content">UTM Content</label>
+			<input type="text" id="utm_content" placeholder="Enter utm_content">
+		
+			<label for="utm_medium">UTM Medium</label>
+			<input type="text" id="utm_medium" placeholder="Enter utm_medium">
+		
+			<label for="utm_source">UTM Source</label>
+			<input type="text" id="utm_source" placeholder="Enter utm_source">
+		
+			<label for="utm_term">UTM Term</label>
+			<input type="text" id="utm_term" placeholder="Enter utm_term">
+		
+		  </form>
+		
+		  <div id="output"></div>
+	</section>
+
+</Layout>
+
+<style lang="scss">
+	label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+    }
+    #output {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      //background-color: #f9f9f9;
+      word-wrap: break-word;
+    }
+	
+
+</style>
+
+
+<script>
+    // Function to generate the URL based on input fields
+    function generateLink() {
+		console.log("generateLink()");
+      const baseUrl = document.getElementById('baseUrl').value;
+      const utmCampaign = document.getElementById('utm_campaign').value;
+      const utmContent = document.getElementById('utm_content').value;
+      const utmMedium = document.getElementById('utm_medium').value;
+      const utmSource = document.getElementById('utm_source').value;
+      const utmTerm = document.getElementById('utm_term').value;
+
+      if (!baseUrl) {
+        document.getElementById('output').innerText = "Please enter a base URL.";
+        return;
+      }
+
+      let url = new URL(baseUrl);
+
+      if (utmCampaign) url.searchParams.append('utm_campaign', utmCampaign);
+      if (utmContent) url.searchParams.append('utm_content', utmContent);
+      if (utmMedium) url.searchParams.append('utm_medium', utmMedium);
+      if (utmSource) url.searchParams.append('utm_source', utmSource);
+      if (utmTerm) url.searchParams.append('utm_term', utmTerm);
+
+      document.getElementById('output').innerText = `Generated URL: ${url.href}`;
+    }
+
+    // Add event listeners for each input field
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', generateLink);
+    });
+  </script>

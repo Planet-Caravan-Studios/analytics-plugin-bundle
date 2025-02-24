@@ -368,7 +368,7 @@
 /* ===== =============================== ===== */
 /* ===== =============================== ===== */
 
-
+/* ===== Timestamping Functions ===== */
 function setLocalStorageWithExpiry(key, value, days) {
     const now = new Date();
     const expiry = now.getTime() + (days * 24 * 60 * 60 * 1000); // Expiry time in milliseconds
